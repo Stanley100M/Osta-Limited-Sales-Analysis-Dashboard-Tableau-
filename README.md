@@ -45,15 +45,76 @@ The project uses four main tables:
 * Created calculated fields for time-based analysis
 
 ## 📅 Key Features & Calculations
-🔹 Year Parameter
+**🔹 Year Parameter**
 
 Created a dynamic parameter Select Year to allow users to switch between reporting periods and enable year-over-year analysis.
 
-🔹 Year Extraction
+**🔹 Year Extraction**
 
 A calculated field was created to extract the year from the order date, making it easier to use in filters and parameter-driven calculations.
 
-`IF [PY Sales] != 0 THEN ([CY Sales] - [PY Sales]) / [PY Sales] END`
+`YEAR([Order Date])`
+
+**🔹 Current Year Sales (CY Sales)**
+
+Calculates total sales for the selected year.
+
+`SUM(
+    IF YEAR([Order Date]) = [Select Year] THEN [Total Sales]
+    END
+)`
+
+**🔹 Previous Year Sales (PY Sales)**
+
+Calculates total sales for the year preceding the selected year.
+
+`SUM(
+    IF YEAR([Order Date]) = [Select Year] - 1 THEN [Total Sales]
+    END
+)`
+
+**🔹 Year-over-Year % Difference**
+
+Measures the percentage change in sales between the current and previous year.
+
+`IF [PY Sales] != 0 THEN
+    ([CY Sales] - [PY Sales]) / [PY Sales]
+END`
+
+**🔹 Key Insight**
+
+These calculations enable dynamic year-over-year comparison, helping identify sales growth trends and performance gaps across different time periods.
+
+## 📈 Dashboard Development
+1. Sales Performance Dashboard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
